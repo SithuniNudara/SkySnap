@@ -516,7 +516,12 @@ const styles = StyleSheet.create({
   title: { textAlign: "center", fontSize: 28, fontWeight: "700", color: "#007AFF" },
   location: { textAlign: "center", fontSize: 18, fontWeight: "500", marginBottom: 10 },
   current: { flexDirection: "row", justifyContent: "center", alignItems: "center" },
-  largeIcon: { width: 120, height: 120 },
+   largeIcon: {
+        width: 150,
+        height: 150,
+        backgroundColor: "rgba(0,0,255,0.1)", 
+        borderRadius: 75,     
+    },
   temperature: { fontSize: 40, fontWeight: "bold", marginLeft: 20, color: "#007AFF" },
   currentDescription: { textAlign: "center", fontSize: 18, marginBottom: 20 },
 
