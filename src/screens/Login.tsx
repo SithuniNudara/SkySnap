@@ -17,7 +17,7 @@ import React from "react";
 
 type LoginNavigationProps = NativeStackNavigationProp<RootParamList, "Login">;
 
-const PUBLIC_URL = "https://ea125b140cde.ngrok-free.app";
+const PUBLIC_URL = "https://f4c739e0b381.ngrok-free.app";
 
 export function LoginScreen() {
     const navigation = useNavigation<LoginNavigationProps>();

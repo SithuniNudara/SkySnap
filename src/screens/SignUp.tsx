@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 
 type SignUpNavigationProps = NativeStackNavigationProp<RootParamList, "SignUp">;
 
-const PUBLIC_URL = "https://7c1fea050cf1.ngrok-free.app";
+const PUBLIC_URL = "https://f4c739e0b381.ngrok-free.app";
 
 export function SignUpScreen() {
     const navigation = useNavigation<SignUpNavigationProps>();
