@@ -7,7 +7,6 @@ import { ProfileScreen } from './src/screens/Profile';
 import { LoginScreen } from './src/screens/Login';
 import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 import { SignUpScreen } from './src/screens/SignUp';
-import SavedWeather from './src/screens/SavedWeather';
 
 export type RootParamList = {
   //no arguments
@@ -15,7 +14,6 @@ export type RootParamList = {
   Home: { username: string };
   Login: undefined;
   SignUp: undefined;
-  SavedWeather: { searchResults?: any[] };  
   //argument
   Profile: { userId: number, name: string };
 }
@@ -33,7 +31,6 @@ export default function App() {
             title: "Hi,"
           }} />
           <Stack.Screen name="SignUp" component={SignUpScreen} options={{title:"Create New Account"}} />
-          <Stack.Screen name="SavedWeather" component={SavedWeather} options={{title:"Search Results"}} />
           <Stack.Screen name="Profile" component={ProfileScreen}
             options={{
               headerRight: () => (
