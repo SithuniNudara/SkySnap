@@ -9,12 +9,10 @@ import { AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 import { SignUpScreen } from './src/screens/SignUp';
 
 export type RootParamList = {
-  //no arguments
   Splash: undefined;
   Home: { username: string };
   Login: undefined;
   SignUp: undefined;
-  //argument
   Profile: { userId: number, name: string };
 }
 
