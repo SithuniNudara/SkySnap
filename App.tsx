@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button,} from 'react-native';
 import { SplashScreen } from './src/Splash';
 import { HomeScreen } from './src/screens/Home';
 import { ProfileScreen } from './src/screens/Profile';
