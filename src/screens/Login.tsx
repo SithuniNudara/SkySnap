@@ -1,23 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
-import {
-    View,
-    StyleSheet,
-    ImageBackground,
-    Text,
-    TextInput,
-    Pressable,
-    KeyboardAvoidingView,
-    Platform,
-    Alert,
-} from "react-native";
+import { ALERT_TYPE, Toast } from 'react-native-alert-notification';
+import {View,StyleSheet,ImageBackground,Text,TextInput,Pressable,KeyboardAvoidingView,} from "react-native";
 import { RootParamList } from "../../App";
 import React from "react";
 
 type LoginNavigationProps = NativeStackNavigationProp<RootParamList, "Login">;
 
-const PUBLIC_URL = "https://f4c739e0b381.ngrok-free.app";
+const PUBLIC_URL = "https://bc0efc3f1a98.ngrok-free.app";
 
 export function LoginScreen() {
     const navigation = useNavigation<LoginNavigationProps>();
@@ -59,7 +49,7 @@ export function LoginScreen() {
                     Toast.show({
                         type: ALERT_TYPE.WARNING,
                         title: "Warning",
-                        textBody: json.message,
+                        textBody: "Somthing Went Wrong!",
                     });
                 }
             } else {

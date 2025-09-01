@@ -595,7 +595,7 @@ export default function Weather() {
   };
 
   const saveToStorage = async (item: any) => {
-    // prevent duplicates by filtering
+
     const exists = getSavedList.find((i) => i.id === item.id);
     if (exists) return;
 
@@ -613,14 +613,14 @@ export default function Weather() {
   const handleDoublePress = (itemId: string) => {
     const time = new Date().getTime();
     const delta = time - getLastPress;
-    const DOUBLE_PRESS_DELAY = 300; // ms
+    const DOUBLE_PRESS_DELAY = 300;
     if (delta < DOUBLE_PRESS_DELAY) {
       deleteItem(itemId);
     }
     setLastPress(time);
   };
 
-  // when refreshing, always load current location instead of saved
+  //refersh -> current location 
   const loadForecast = async () => {
     setRefreshing(true);
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -659,10 +659,10 @@ export default function Weather() {
       if (!res.ok) throw new Error("City not found");
       const data = await res.json();
 
-      // update UI immediately with searched city
+      // update -> UI -> when search
       await loadByCoords(data.coord.lat, data.coord.lon);
 
-      // save only once to storage
+      // save 
       saveToStorage({
         id: data.id.toString(),
         name: data.name,
@@ -692,12 +692,12 @@ export default function Weather() {
 
     <SafeAreaView style={styles.container}>
       <Image
-        source={require("../../assets/weather_bg.png")} 
+        source={require("../../assets/weather_bg.png")}
         style={StyleSheet.absoluteFillObject}
-        blurRadius={6} 
+        blurRadius={6}
       />
 
-      {/*Search */}
+      {/*Search*/}
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
@@ -714,7 +714,7 @@ export default function Weather() {
       {/* Scrollable content */}
       <ScrollView
         style={{ flex: 1 }}
-        contentContainerStyle={{ paddingBottom: 100 }} 
+        contentContainerStyle={{ paddingBottom: 100 }}
         refreshControl={
           <RefreshControl refreshing={getRefreshing} onRefresh={loadForecast} />
         }
@@ -821,13 +821,13 @@ export default function Weather() {
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
+  container: {
+    flex: 1,
     backgroundColor: "#000"
   },
-  loading: { 
-    flex: 1, 
-    justifyContent: "center", 
+  loading: {
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center"
   },
   card: {
@@ -843,9 +843,9 @@ const styles = StyleSheet.create({
   },
 
   // Search
-  searchContainer: { 
-    flexDirection: "row", 
-    padding: 10, 
+  searchContainer: {
+    flexDirection: "row",
+    padding: 10,
     backgroundColor: "#fff"
   },
   searchInput: {
@@ -879,37 +879,37 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#333",
   },
-  location: { 
-    textAlign: "center", 
-    fontSize: 18, 
-    fontWeight: "500", 
-    marginBottom: 10 
+  location: {
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "500",
+    marginBottom: 10
   },
-  current: { 
-    flexDirection: "row", 
-    justifyContent: "center", 
-    alignItems: "center" 
+  current: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   largeIcon: {
     width: 150,
     height: 150,
   },
-  temperature: { 
-    fontSize: 40, 
-    fontWeight: "bold", 
-    marginLeft: 20, 
+  temperature: {
+    fontSize: 40,
+    fontWeight: "bold",
+    marginLeft: 20,
     color: "#007AFF"
   },
-  currentDescription: { 
-    textAlign: "center", 
-    fontSize: 18, 
+  currentDescription: {
+    textAlign: "center",
+    fontSize: 18,
     marginBottom: 20
   },
 
-  extraInfo: { 
-    flexDirection: "row", 
+  extraInfo: {
+    flexDirection: "row",
     justifyContent: "space-around",
-    marginVertical: 10 
+    marginVertical: 10
   },
   infoCard: {
     width: Dimensions.get("window").width / 2.5,
@@ -919,61 +919,61 @@ const styles = StyleSheet.create({
     alignItems: "center",
     elevation: 3,
   },
-  icon: { 
-    width: 40, 
-    height: 40, 
-    marginBottom: 5 
+  icon: {
+    width: 40,
+    height: 40,
+    marginBottom: 5
   },
-  infoText: { 
-    fontSize: 20, 
-    fontWeight: "600", 
+  infoText: {
+    fontSize: 20,
+    fontWeight: "600",
     color: "#007AFF"
   },
-  infoLabel: { 
-    fontSize: 14, 
-    color: "#666", 
+  infoLabel: {
+    fontSize: 14,
+    color: "#666",
     marginTop: 2
   },
 
- hourCard: {
-  padding: 12,
-  width: 110,
-  backgroundColor: "rgba(255,255,255,0.9)",
-  borderRadius: 16,
-  alignItems: "center",
-  marginHorizontal: 6,
-  shadowColor: "#000",
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.15,
-  shadowRadius: 3,
-  elevation: 3,
-},
+  hourCard: {
+    padding: 12,
+    width: 110,
+    backgroundColor: "rgba(255,255,255,0.9)",
+    borderRadius: 16,
+    alignItems: "center",
+    marginHorizontal: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    elevation: 3,
+  },
 
-hourTemp: { 
-  fontWeight: "700", 
-  fontSize: 18, 
-  color: "#007AFF", 
-  marginBottom: 4 
-},
+  hourTemp: {
+    fontWeight: "700",
+    fontSize: 18,
+    color: "#007AFF",
+    marginBottom: 4
+  },
 
-hourDesc: { 
-  fontSize: 12, 
-  color: "#444", 
-  textAlign: "center", 
-  marginBottom: 4 
-},
+  hourDesc: {
+    fontSize: 12,
+    color: "#444",
+    textAlign: "center",
+    marginBottom: 4
+  },
 
-hourTime: { 
-  fontSize: 14, 
-  fontWeight: "600", 
-  color: "#333" 
-},
+  hourTime: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#333"
+  },
 
-smallIcon: { 
-  width: 50, 
-  height: 50, 
-  marginBottom: 4 
-},
+  smallIcon: {
+    width: 50,
+    height: 50,
+    marginBottom: 4
+  },
 
 
   // Saved list

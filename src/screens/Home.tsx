@@ -1,6 +1,6 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Touchable, Button } from "react-native";
 import { RootParamList } from "../../App";
 import Weather from "./Weather";
 import React, { useEffect } from "react";
@@ -17,12 +17,20 @@ export function HomeScreen() {
   useEffect(() => {
     navigation.setOptions({
       title: `Hi, ${username}`,
+      headerRight: () => (
+         <Button
+          title={"Profile"}
+          color="#44bd32"
+          onPress={() => {
+            navigation.navigate("Profile", {name: username });
+          }}
+        />
+      ),
     });
   }, [navigation, username]);
 
   return (
     <View style={styles.container}>
-      {/* Weather no longer needs props */}
       <Weather />
     </View>
   );

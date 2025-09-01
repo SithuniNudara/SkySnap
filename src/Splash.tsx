@@ -15,7 +15,6 @@ export function SplashScreen() {
   const [fadeAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    // Fade in animation in splash screen in my app
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 1500,

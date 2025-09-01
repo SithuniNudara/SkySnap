@@ -3,16 +3,13 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Picker } from '@react-native-picker/picker';
 import { ALERT_TYPE, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 import * as ImagePicker from 'expo-image-picker';
-import {
-    View, StyleSheet, ImageBackground, Text, TextInput, Pressable,
-    KeyboardAvoidingView, Image, ScrollView
-} from "react-native";
+import {View,StyleSheet,ImageBackground,Text,TextInput,Pressable,KeyboardAvoidingView,Image,ScrollView} from "react-native";
 import { RootParamList } from "../../App";
 import React, { useEffect, useState } from "react";
 
 type SignUpNavigationProps = NativeStackNavigationProp<RootParamList, "SignUp">;
 
-const PUBLIC_URL = "https://f4c739e0b381.ngrok-free.app";
+const PUBLIC_URL = "https://bc0efc3f1a98.ngrok-free.app";
 
 export function SignUpScreen() {
     const navigation = useNavigation<SignUpNavigationProps>();
@@ -21,7 +18,6 @@ export function SignUpScreen() {
         navigation.replace("Home", { username });
     };
 
-    // states
     const [image, setImage] = useState<string | null>(null);
     const [getCities, setCities] = useState<{ id: number; name: string }[]>([]);
     const [selectedCity, setSelectedCity] = useState("");
