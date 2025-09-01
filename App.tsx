@@ -5,7 +5,7 @@ import { SplashScreen } from './src/Splash';
 import { HomeScreen } from './src/screens/Home';
 import { ProfileScreen } from './src/screens/Profile';
 import { LoginScreen } from './src/screens/Login';
-import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+import { AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 import { SignUpScreen } from './src/screens/SignUp';
 
 export type RootParamList = {
