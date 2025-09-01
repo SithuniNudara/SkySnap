@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {StyleSheet,Text,View,TouchableOpacity,ImageBackground,Dimensions,Animated,Easing,} from "react-native";
+import {StyleSheet,Text,View,TouchableOpacity,ImageBackground,Animated,Easing,} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootParamList } from "../App";
@@ -9,15 +9,13 @@ type SplashNavigationProps = NativeStackNavigationProp<
   "Splash"
 >;
 
-const { width, height } = Dimensions.get("window");
-
 export function SplashScreen() {
   const navigation = useNavigation<SplashNavigationProps>();
   const [buttonScale] = useState(new Animated.Value(1));
   const [fadeAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    // Fade in animation
+    // Fade in animation in splash screen in my app
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 1500,
@@ -43,7 +41,6 @@ export function SplashScreen() {
   };
 
   const handleWelcome = () => {
-    // Navigate to Home or Login (your choice)
     navigation.navigate("Login");
   };
 
