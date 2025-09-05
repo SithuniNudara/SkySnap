@@ -11,18 +11,18 @@ import { RefreshControl } from "react-native-gesture-handler";
 
 type ProfileNavigationProps = RouteProp<RootParamList, "Profile">;
 type SplashNavigationProps = NativeStackNavigationProp<
-  RootParamList,
-  "Splash"
+    RootParamList,
+    "Splash"
 >;
-const PUBLIC_URL = "https://bc0efc3f1a98.ngrok-free.app";
+const PUBLIC_URL = "https://4a9076771255.ngrok-free.app";
 
 type Props = {
     route: ProfileNavigationProps;
 };
 
 export function ProfileScreen({ route }: Props) {
-     const navigation = useNavigation<SplashNavigationProps>();
-   // const navigation = useNavigation<ProfileNavigationProps>();
+    //const navigation = useNavigation<SplashNavigationProps>();
+    const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
     const [image, setImage] = React.useState<string | null>(null);
     const [getCities, setCities] = React.useState<{ id: number; name: string }[]>([]);
@@ -60,15 +60,31 @@ export function ProfileScreen({ route }: Props) {
                 const response = await fetch(PUBLIC_URL + "/SkySnap/LoadUsers?username=" + username);
                 if (response.ok) {
                     const json = await response.json();
-
-                    setFullName(json.fullName);
-                    setUserName(json.userName);
-                    setEmail(json.email);
-                    setPassword(json.password);
-                    setConfirmPassword("");
-                    setSelectedCity(json.city_id);
-                    setImage(json.profile_image);
-                    console.log(json.profile_image);
+                    // console.log(json);
+                    if (json.status) {
+                        setFullName(json.fullName);
+                        setUserName(json.userName);
+                        setEmail(json.email);
+                        setPassword(json.password);
+                        setConfirmPassword("");
+                        setSelectedCity(json.city_id);
+                        setImage(json.profile_image);
+                        //   console.log(json.profile_image);
+                    } else {
+                        Toast.show({
+                            type: ALERT_TYPE.WARNING,
+                            title: "Warning",
+                            textBody: json.message,
+                        });
+                        return;
+                    }
+                } else {
+                    Toast.show({
+                        type: ALERT_TYPE.WARNING,
+                        title: "Warning",
+                        textBody: "Server Error",
+                    });
+                    return;
                 }
             } catch (e) {
                 console.error("User load failed", e);
@@ -91,9 +107,9 @@ export function ProfileScreen({ route }: Props) {
         }
     };
 
-    // sign up request
-    const handleSignUp = async () => {
-        if (!getFullName || !getUserName || !getEmail || !getPassword || !getConfirmPassword || !selectedCity || !image) {
+    // update request
+    const handleUpdate = async () => {
+        if (!getFullName || !getUserName || !getEmail || !getPassword || !getConfirmPassword || !selectedCity) {
             Toast.show({
                 type: ALERT_TYPE.WARNING,
                 title: "Warning",
@@ -139,8 +155,13 @@ export function ProfileScreen({ route }: Props) {
                     title: "Success",
                     textBody: "Account Updated Successfully!",
                 });
-                navigation.navigate("Login");
 
+                setTimeout(() => {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: "Login" }],
+                    });
+                }, 1500);
             } else {
                 Toast.show({
                     type: ALERT_TYPE.WARNING,
@@ -172,7 +193,7 @@ export function ProfileScreen({ route }: Props) {
                     keyboardVerticalOffset={40}
                     style={styles.overlay}
                 >
-                    <ScrollView contentContainerStyle={{ paddingBottom: 30 }} 
+                    <ScrollView contentContainerStyle={{ paddingBottom: 30 }}
                     >
                         <View style={styles.card}>
                             <Text style={styles.title}>User Profile</Text>
@@ -211,7 +232,7 @@ export function ProfileScreen({ route }: Props) {
                                 </Picker>
                             </View>
 
-                            <Pressable style={styles.loginButton} onPress={handleSignUp}>
+                            <Pressable style={styles.loginButton} onPress={handleUpdate}>
                                 <Text style={styles.loginButtonText}>Update Account</Text>
                             </Pressable>
                         </View>

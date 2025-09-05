@@ -7,7 +7,7 @@ import React from "react";
 
 type LoginNavigationProps = NativeStackNavigationProp<RootParamList, "Login">;
 
-const PUBLIC_URL = "https://bc0efc3f1a98.ngrok-free.app";
+const PUBLIC_URL = "https://4a9076771255.ngrok-free.app";
 
 export function LoginScreen() {
     const navigation = useNavigation<LoginNavigationProps>();
@@ -49,7 +49,7 @@ export function LoginScreen() {
                     Toast.show({
                         type: ALERT_TYPE.WARNING,
                         title: "Warning",
-                        textBody: "Somthing Went Wrong!",
+                        textBody: json.message,
                     });
                 }
             } else {
