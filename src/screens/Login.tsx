@@ -1,13 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { ALERT_TYPE, Toast } from 'react-native-alert-notification';
-import {View,StyleSheet,ImageBackground,Text,TextInput,Pressable,KeyboardAvoidingView,} from "react-native";
+import { ALERT_TYPE, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+import { View, StyleSheet, ImageBackground, Text, TextInput, Pressable, KeyboardAvoidingView, } from "react-native";
 import { RootParamList } from "../../App";
 import React from "react";
 
 type LoginNavigationProps = NativeStackNavigationProp<RootParamList, "Login">;
 
-const PUBLIC_URL = "https://4a9076771255.ngrok-free.app";
+const PUBLIC_URL = "https://d46be9bc3f87.ngrok-free.app";
 
 export function LoginScreen() {
     const navigation = useNavigation<LoginNavigationProps>();
@@ -69,58 +69,60 @@ export function LoginScreen() {
     };
 
     //handleSignUp
-     const handleSignUp = () => {
+    const handleSignUp = () => {
         navigation.navigate("SignUp");
     };
 
     return (
-
-        <ImageBackground
-            source={{
-                uri: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1350&q=80",
-            }}
-            style={styles.background}
-            blurRadius={3}
-        >
-
-            <KeyboardAvoidingView
-                behavior={"padding"}
-                keyboardVerticalOffset={40}
-                style={styles.overlay}
+        <AlertNotificationRoot>
+            <ImageBackground
+                source={{
+                    uri: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=1350&q=80",
+                }}
+                style={styles.background}
+                blurRadius={3}
             >
-                <View style={styles.card}>
-                    <Text style={styles.title}>Welcome Back</Text>
-                    <Text style={styles.subtitle}>Login to continue</Text>
 
-                    <TextInput
-                        placeholder="Email Address"
-                        placeholderTextColor="#888"
-                        keyboardType="email-address"
-                        onChangeText={setEmail}
-                        value={getEmail}
-                        style={styles.input}
-                    />
-                    <TextInput
-                        placeholder="Password"
-                        placeholderTextColor="#888"
-                        secureTextEntry
-                        onChangeText={setPassword}
-                        value={getPassword}
-                        style={styles.input}
-                    />
+                <KeyboardAvoidingView
+                    behavior={"padding"}
+                    keyboardVerticalOffset={40}
+                    style={styles.overlay}
+                >
+                    <View style={styles.card}>
+                        <Text style={styles.title}>Welcome Back</Text>
+                        <Text style={styles.subtitle}>Login to continue</Text>
 
-                    <Pressable style={styles.loginButton} onPress={handleLogin}>
-                        <Text style={styles.loginButtonText}>Login</Text>
-                    </Pressable>
+                        <TextInput
+                            placeholder="Email Address"
+                            placeholderTextColor="#888"
+                            keyboardType="email-address"
+                            onChangeText={setEmail}
+                            value={getEmail}
+                            style={styles.input}
+                        />
+                        <TextInput
+                            placeholder="Password"
+                            placeholderTextColor="#888"
+                            secureTextEntry
+                            onChangeText={setPassword}
+                            value={getPassword}
+                            style={styles.input}
+                        />
 
-                    <Pressable style={styles.createAccountButton} onPress={handleSignUp}>
-                        <Text style={styles.createAccountButtonText}>Create Account</Text>
-                    </Pressable>
-                </View>
-            </KeyboardAvoidingView>
+                        <Pressable style={styles.loginButton} onPress={handleLogin}>
+                            <Text style={styles.loginButtonText}>Login</Text>
+                        </Pressable>
+
+                        <Pressable style={styles.createAccountButton} onPress={handleSignUp}>
+                            <Text style={styles.createAccountButtonText}>Create Account</Text>
+                        </Pressable>
+                    </View>
+                </KeyboardAvoidingView>
 
 
-        </ImageBackground>
+            </ImageBackground>
+        </AlertNotificationRoot>
+
 
     );
 }
